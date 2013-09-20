@@ -165,7 +165,7 @@ function checkConnection() {
 function onOnline() {
     var StatoCon = document.getElementById('ConnectionStatus');
 
-    StatoCon.style.backgroundColor = "green";
+    StatoCon.style.background = "green";
 
     var networkState = navigator.network.connection.type;
 
@@ -197,7 +197,7 @@ function alertDismissed() {
 function onOffline() {
     var StatoCon = document.getElementById('ConnectionStatus');
 
-    StatoCon.style.backgroundColor = "red";
+    StatoCon.style.background = "red";
     StatoCon.innerHTML = "Dispositivo offline";
     // Handle the online event
     //navigator.notification.alert(message, alertCallback, [title], [buttonName]);
