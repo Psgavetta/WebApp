@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" type="text/css" href="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.css" />
+        <script src="jquery.mobile-1.3.2/jquery-1.10.2.min.js"></script>
+	    <script src="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
+
+        <title>Test Connessione</title>
+    </head>
+    <body onload="Init()">
+    <!-- Start of first page: #one -->
+    <div data-role="page" id="one">
+
+	    <div data-role="header">
+		<h1>Multi-page</h1>
+	    </div><!-- /header -->
+	    <div data-role="content" >	
+		    <h2>One</h2>
+		
+		    <p>I have an <code>id</code> of "one" on my page container. I'm first in the source order so I'm shown when the page loads.</p>	
+		
+		    <p>This is a multi-page boilerplate template that you can copy to build your first jQuery Mobile page. This template contains multiple "page" containers inside, unlike a <a href="page-template.html"> single page template</a> that has just one page within it.</p>	
+		    <h3>Show internal pages:</h3>
+		    <p><a href="#popupGeo" data-role="button" data-rel="dialog" data-transition="pop">Esempio Geolocation</a></p>
+            <p><a href="#popupAcc" data-role="button" data-rel="dialog" data-transition="pop">Esempio Accelerometro</a></p>
+            <p><a href="#popupStore" data-role="button" data-rel="dialog" data-transition="pop">Esempio Storing</a></p>
+            <p>
+                <fieldset class="ui-grid-a">
+	                <div class="ui-block-a"><label for="sito">Inserire URL:</label><input name="sito" id="text-6" value="" placeholder="URL" type="text"></div>
+	                <div class="ui-block-b"><button type="button" onclick="doRedirect()">Vai</button></div>	   
+                </fieldset>
+            </p>
+            
+            <p><a href="#popupStore" data-role="button" data-rel="dialog" data-transition="pop" onclick="doRedirectToPage()">Esempio InAppBrowser</a></p>
+            <p><a href="#popupAcc" data-role="button" data-rel="dialog" data-transition="pop" onclick="SplashscreenExample()">Esempio Splashscreen</a></p>
+            <p><a href="#popupAcc" data-role="button" data-rel="dialog" data-transition="pop" onclick="doRedirectLocale('spec.html')">Seconda pagina</a></p>
+	    </div><!-- /content -->
+	    <div data-role="footer" id="Div1">
+            Stato connessione
+	    </div><!-- /footer -->
+     </div><!-- /page one -->
+
+    <!-- Start of second page: #popupGeo -->
+    <div data-role="page" id="popupGeo">
+
+	    <div data-role="header" data-theme="e">
+		    <h1>Esempio Geolocation</h1>
+	    </div><!-- /header -->
+
+	    <div data-role="content" data-theme="d">	
+		    <h2>Geolocation</h2>
+           <button type="button" onclick="GetGeoLocation()">Geolocation</button>
+		    <p id="geolocation"></p>
+		    <p><a href="#one" data-rel="back" data-role="button" data-inline="true" data-icon="back">Indietro</a></p>	
+	    </div><!-- /content -->
+	
+	    <div data-role="footer">
+	    </div><!-- /footer -->
+    </div><!-- /page popup -->
+
+    <!-- Start of third page: #popupAcc -->
+    <div data-role="page" id="popupAcc">
+
+	    <div data-role="header" data-theme="e">
+		    <h1>Esempio Accelerometro</h1>
+	    </div><!-- /header -->
+
+	    <div data-role="content" data-theme="d">	
+		    <h2>Accelerometro</h2>
+            <select name="slider-flip-m" id="slider-flip-m" data-role="slider" data-mini="true" onchange="OnSelectionChange(this)">
+                <option value="off"selected="">No</option>
+                <option value="on" >Yes</option>
+            </select>
+            <p id="accelerometer"></p>
+		    <p><a href="#one" data-rel="back" data-role="button" data-inline="true" data-icon="back">Indietro</a></p>	
+	    </div><!-- /content -->
+	
+	    <div data-role="footer">
+	    </div><!-- /footer -->
+    </div><!-- /page popup -->
+
+    <!-- Start of page: #popupStore -->
+    <div data-role="page" id="popupStore">
+
+	    <div data-role="header" data-theme="e">
+		    <h1>Esempio Accelerometro</h1>
+	    </div><!-- /header -->
+
+	    <div data-role="content" data-theme="d">	
+		    <h2>Storing</h2>
+		    <label for="textarea">Testo da salvare:</label>
+            <textarea cols="40" rows="8" name="textarea" id="TextToSave"></textarea>
+            <p>
+                <button type="button" onclick="StoreLocally()" >Salva</button>
+            </p>
+		    <p><a href="#one" data-rel="back" data-role="button" data-inline="true" data-icon="back">Indietro</a></p>	
+	    </div><!-- /content -->
+	
+	    <div data-role="footer">
+	    </div><!-- /footer -->
+    </div><!-- /page popup -->
+    </body>
+     <script type="text/javascript" src="phonegap.js"></script>
+     <script type="text/javascript" src="js/index.js"></script>
+</html>

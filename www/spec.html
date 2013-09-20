@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Seconda Pagina</title>
+         <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        
+    </head>
+    <body onload="InitSecondPage()">
+        <table>
+            <tr>
+                <td id="ConnectionStatus">
+                    Stato connessione
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="URLFrame"><button type="button" id="StartAcc" onclick="UpdateFrame(document.all.URLFrame.value)">Vai</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <iframe id="FrameSite"src="http://www.switchup.it/" width="100%" height="100%" style="overflow: scroll;">
+                      <p>Problema con la visualizzazione</p>
+                    </iframe>
+                </td>
+            </tr>
+        </table>
+    </body>
+     <script type="text/javascript" src="js/index.js"></script>
+     <script type="text/javascript" src="phonegap.js"></script>
+</html>
