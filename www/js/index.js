@@ -224,7 +224,7 @@ function alertDismissedOffLine() {
 
 function OnSelectionChange(select) {
     var selectedOption = select.options[select.selectedIndex];
-    if (selectedOption == "off") {
+    if (selectedOption.value == "off") {
         stopWatchAcc();
         alert('off');
     }
