@@ -230,15 +230,6 @@ function alertDismissedOffLine() {
 
 function OnSelectionChange(select) {
     if (select == "off") {
-<<<<<<< HEAD
-        stopWatchAcc()
-    }
-    else {
-        startWatchAcc()
-    }
-}
-
-=======
         stopWatchAcc();
     }
     else {
@@ -247,7 +238,6 @@ function OnSelectionChange(select) {
 }
 
 var AccwatchID;
->>>>>>> Ver_0.5.5
 function startWatchAcc() {
 
     // Update acceleration every 3 seconds
