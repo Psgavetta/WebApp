@@ -226,11 +226,11 @@ function OnSelectionChange(select) {
     var selectedOption = select.options[select.selectedIndex];
     if (selectedOption.value == "off") {
         stopWatchAcc();
-        alert('off');
+        
     }
     else {
         startWatchAcc();
-        alert('on');
+       
     }
 }
 
