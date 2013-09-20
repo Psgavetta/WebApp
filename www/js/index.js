@@ -1,11 +1,5 @@
 function Init() {
 
-
-    //document.getElementById('StartAcc').disabled = false;
-    document.getElementById("StartAcc").className = "";
-    //document.getElementById('StopAcc').disabled = true;
-    document.getElementById("StopAcc").className = "ui-disabled";
-
     if (window.localStorage.getItem("key")) {
         document.all.TextToSave.value = window.localStorage.getItem("key");
     }
