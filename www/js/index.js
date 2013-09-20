@@ -225,9 +225,11 @@ function alertDismissedOffLine() {
 function OnSelectionChange(select) {
     if (select == "off") {
         stopWatchAcc();
+        alert('off');
     }
     else {
         startWatchAcc();
+        alert('on');
     }
 }
 
