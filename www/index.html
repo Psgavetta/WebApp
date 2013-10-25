@@ -22,13 +22,14 @@
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="css/index.css" /
-        <link rel="stylesheet" type="text/css" href="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.css" />
-        <script type="text/javascript" src="phonegap.js"></script>
-     <script type="text/javascript" src="js/index.js"></script>
-    <script src="jquery.mobile-1.3.2/jquery-1.10.2.min.js"></script>
-	<script src="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
 
+        <link rel="stylesheet" type="text/css" href="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.css" />
+        
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="jquery.mobile-1.3.2/jquery-1.10.2.min.js"></script>
+        <script src="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
         <title>Test Connessione</title>
     </head>
     <body onload="Init()">
@@ -71,8 +72,12 @@
 
 	    <div data-role="content" data-theme="d">	
 		    <h2>Geolocation</h2>
-           <button type="button" onclick="GetGeoLocation()">Geolocation</button>
-		    <p id="geolocation"></p>
+           <button id="ButtonGeo1" type="button" lat="" lon="" onclick="GetGeoLocation('ButtonGeo1')">Geolocation</button>
+		    <p id="geolocation1"></p>
+			<button id="ButtonGeo2" type="button" lat="" lon="" onclick="GetGeoLocation('ButtonGeo2')">Geolocation2</button>
+		    <p id="geolocation2"></p>
+			<button type="button" onclick="gps_distance()">Distance</button>
+			<p id="geolocationDist"></p>
 		    <p><a href="#one" data-rel="back" data-role="button" data-inline="true" data-icon="back">Indietro</a></p>	
 	    </div><!-- /content -->
 	

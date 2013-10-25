@@ -104,14 +104,19 @@ function SplashscreenExample() {
 /****************************************************************/
 /*                        GEOLOCATION                           */
 /****************************************************************/
-function GetGeoLocation() {
-    navigator.geolocation.getCurrentPosition(GeoOnSuccess, GeoOnError);
+function GetGeoLocation(button) {
+	if(button=='ButtonGeo1')
+		navigator.geolocation.getCurrentPosition(GeoOnSuccess1, GeoOnError1);
+	else
+		navigator.geolocation.getCurrentPosition(GeoOnSuccess2, GeoOnError2);
 }
+
 
 // onSuccess Geolocation
 //
-function GeoOnSuccess(position) {
-    var element = document.getElementById('geolocation');
+
+function GeoOnSuccess1(position) {
+    var element = document.getElementById('geolocation1');
 
     element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
                         'Longitude: ' + position.coords.longitude + '<br />' +
@@ -121,13 +126,69 @@ function GeoOnSuccess(position) {
                         'Heading: ' + position.coords.heading + '<br />' +
                         'Speed: ' + position.coords.speed + '<br />' +
                         'Timestamp: ' + position.timestamp + '<br />';
+	if(($('#ButtonGeo1').attr( 'lat'))&&($('#ButtonGeo1').attr( 'lon'))&&($('#ButtonGeo2').attr( 'lon'))&&($('#ButtonGeo2').attr( 'lon')))
+	{
+	
+	}
+	$('#ButtonGeo1').attr( 'lat', position.coords.latitude );		
+	$('#ButtonGeo1').attr( 'lon', position.coords.longitude );			
+
+	
 }
 
 // onError Callback receives a PositionError object
 //
-function GeoOnError(error) {
+function GeoOnError1(error) {
     alert('code: ' + error.code + '\n' +
           'message: ' + error.message + '\n');
+}
+
+function GeoOnSuccess2(position) {
+    var element = document.getElementById('geolocation2');
+
+    element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
+                        'Longitude: ' + position.coords.longitude + '<br />' +
+                        'Altitude: ' + position.coords.altitude + '<br />' +
+                        'Accuracy: ' + position.coords.accuracy + '<br />' +
+                        'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '<br />' +
+                        'Heading: ' + position.coords.heading + '<br />' +
+                        'Speed: ' + position.coords.speed + '<br />' +
+                        'Timestamp: ' + position.timestamp + '<br />';
+	$('#ButtonGeo2').attr( 'lat', position.coords.latitude );		
+	$('#ButtonGeo2').attr( 'lon', position.coords.longitude );			
+
+	
+}
+
+// onError Callback receives a PositionError object
+//
+function GeoOnError2(error) {
+    alert('code: ' + error.code + '\n' +
+          'message: ' + error.message + '\n');
+}
+
+function gps_distance()
+{
+	lat1=$('#ButtonGeo1').attr( 'lat' );		
+	lon1=$('#ButtonGeo1').attr( 'lon' );
+	lat2=$('#ButtonGeo2').attr( 'lat');		
+	lon2=$('#ButtonGeo2').attr( 'lon' );
+	// http://www.movable-type.co.uk/scripts/latlong.html
+    var R = 6371; // km
+    var dLat = (lat2-lat1) * (Math.PI / 180);
+    var dLon = (lon2-lon1) * (Math.PI / 180);
+    var lat1 = lat1 * (Math.PI / 180);
+    var lat2 = lat2 * (Math.PI / 180);
+
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c;
+    
+	var element = document.getElementById('geolocationDist');
+
+    element.innerHTML = 'Difference: '+d+' km';
+    return d;
 }
 
 /****************************************************************/
