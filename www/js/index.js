@@ -106,41 +106,39 @@ function SplashscreenExample() {
 /****************************************************************/
 function GetGeoLocation(button) {
 	if(button=='ButtonGeo1')
-		navigator.geolocation.getCurrentPosition(GeoOnSuccess1, GeoOnError1);
-	else
-		navigator.geolocation.getCurrentPosition(GeoOnSuccess2, GeoOnError2);
+		navigator.geolocation.getCurrentPosition(GeoOnSuccess1, GeoOnError);
+	else if(button=='ButtonGeo2')
+		navigator.geolocation.getCurrentPosition(GeoOnSuccess2, GeoOnError);
+	else if(button=='ButtonGeo3')
+		navigator.geolocation.getCurrentPosition(GeoOnSuccess3, GeoOnError);
+	else if(button=='ButtonGeo4')
+		navigator.geolocation.getCurrentPosition(GeoOnSuccess4, GeoOnError);
 }
 
 
 // onSuccess Geolocation
 //
 
+
+
+// onError Callback receives a PositionError object
+//
+function GeoOnError(error) {
+    alert('code: ' + error.code + '\n' +
+          'message: ' + error.message + '\n');
+}
+
 function GeoOnSuccess1(position) {
     var element = document.getElementById('geolocation1');
 
     element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
                         'Longitude: ' + position.coords.longitude + '<br />' +
-                        'Altitude: ' + position.coords.altitude + '<br />' +
-                        'Accuracy: ' + position.coords.accuracy + '<br />' +
-                        'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '<br />' +
-                        'Heading: ' + position.coords.heading + '<br />' +
-                        'Speed: ' + position.coords.speed + '<br />' +
                         'Timestamp: ' + position.timestamp + '<br />';
-	if(($('#ButtonGeo1').attr( 'lat'))&&($('#ButtonGeo1').attr( 'lon'))&&($('#ButtonGeo2').attr( 'lon'))&&($('#ButtonGeo2').attr( 'lon')))
-	{
-	
-	}
+
 	$('#ButtonGeo1').attr( 'lat', position.coords.latitude );		
 	$('#ButtonGeo1').attr( 'lon', position.coords.longitude );			
 
 	
-}
-
-// onError Callback receives a PositionError object
-//
-function GeoOnError1(error) {
-    alert('code: ' + error.code + '\n' +
-          'message: ' + error.message + '\n');
 }
 
 function GeoOnSuccess2(position) {
@@ -148,11 +146,6 @@ function GeoOnSuccess2(position) {
 
     element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
                         'Longitude: ' + position.coords.longitude + '<br />' +
-                        'Altitude: ' + position.coords.altitude + '<br />' +
-                        'Accuracy: ' + position.coords.accuracy + '<br />' +
-                        'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '<br />' +
-                        'Heading: ' + position.coords.heading + '<br />' +
-                        'Speed: ' + position.coords.speed + '<br />' +
                         'Timestamp: ' + position.timestamp + '<br />';
 	$('#ButtonGeo2').attr( 'lat', position.coords.latitude );		
 	$('#ButtonGeo2').attr( 'lon', position.coords.longitude );			
@@ -160,19 +153,70 @@ function GeoOnSuccess2(position) {
 	
 }
 
-// onError Callback receives a PositionError object
-//
-function GeoOnError2(error) {
-    alert('code: ' + error.code + '\n' +
-          'message: ' + error.message + '\n');
+function GeoOnSuccess3(position) {
+    var element = document.getElementById('geolocation3');
+
+    element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
+                        'Longitude: ' + position.coords.longitude + '<br />' +
+                        'Timestamp: ' + position.timestamp + '<br />';
+	$('#ButtonGeo3').attr( 'lat', position.coords.latitude );		
+	$('#ButtonGeo3').attr( 'lon', position.coords.longitude );			
+
+	
+}
+
+function GeoOnSuccess4(position) {
+    var element = document.getElementById('geolocation4');
+
+    element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
+                        'Longitude: ' + position.coords.longitude + '<br />' +
+                        'Timestamp: ' + position.timestamp + '<br />';
+	$('#ButtonGeo4').attr( 'lat', position.coords.latitude );		
+	$('#ButtonGeo4').attr( 'lon', position.coords.longitude );			
+
+	
 }
 
 function gps_distance()
 {
-	lat1=$('#ButtonGeo1').attr( 'lat' );		
-	lon1=$('#ButtonGeo1').attr( 'lon' );
-	lat2=$('#ButtonGeo2').attr( 'lat');		
-	lon2=$('#ButtonGeo2').attr( 'lon' );
+	if(!$.isNumeric($('#Distance').val()))
+		alert("Ammessi solo valori numerici");
+	else{
+		lat1=$('#ButtonGeo1').attr( 'lat' );		
+		lon1=$('#ButtonGeo1').attr( 'lon' );
+		lat2=$('#ButtonGeo2').attr( 'lat');		
+		lon2=$('#ButtonGeo2').attr( 'lon' );
+		lat3=$('#ButtonGeo3').attr( 'lat');		
+		lon3=$('#ButtonGeo3').attr( 'lon' );
+		lat4=$('#ButtonGeo4').attr( 'lat');		
+		lon4=$('#ButtonGeo4').attr( 'lon' );
+		
+		var element = $('#geolocationDist');
+
+		element.html('');
+		
+		DistUL1=GET_gps_distance(lat1,lon1,lat2,lon2);
+		DistUL2=GET_gps_distance(lat1,lon1,lat3,lon3);
+		DistUL3=GET_gps_distance(lat1,lon1,lat4,lon4);
+		
+		element.append('Difference U-L1: '+DistUL1+' km<br>');
+		element.append('Difference U-L2: '+DistUL2+' km<br>');
+		element.append('Difference U-L3: '+DistUL3+' km<br><br>');
+		
+		if(DistUL1<$('#Distance').val())
+			element.append('Difference U-L1 <2m: '+DistUL1+' km<br>');
+		if(DistUL2<$('#Distance').val())
+			element.append('Difference U-L2 <2m: '+DistUL2+' km<br>');
+		if(DistUL3<$('#Distance').val())
+			element.append('Difference U-L3 <2m: '+DistUL3+' km<br>');
+
+		return d;
+	}
+}
+
+function GET_gps_distance(lat1,lon1,lat2,lon2)
+{
+
 	// http://www.movable-type.co.uk/scripts/latlong.html
     var R = 6371; // km
     var dLat = (lat2-lat1) * (Math.PI / 180);
@@ -184,12 +228,10 @@ function gps_distance()
             Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
     var d = R * c;
-    
-	var element = document.getElementById('geolocationDist');
 
-    element.innerHTML = 'Difference: '+d+' km';
     return d;
 }
+
 
 /****************************************************************/
 /*                        CONNECTION                            */

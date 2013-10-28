@@ -72,10 +72,16 @@
 
 	    <div data-role="content" data-theme="d">	
 		    <h2>Geolocation</h2>
-           <button id="ButtonGeo1" type="button" lat="" lon="" onclick="GetGeoLocation('ButtonGeo1')">Geolocation</button>
+           <button id="ButtonGeo1" type="button" lat="" lon="" onclick="GetGeoLocation('ButtonGeo1')">Posizione utente</button>
 		    <p id="geolocation1"></p>
-			<button id="ButtonGeo2" type="button" lat="" lon="" onclick="GetGeoLocation('ButtonGeo2')">Geolocation2</button>
+			<button id="ButtonGeo2" type="button" lat="" lon="" onclick="GetGeoLocation('ButtonGeo2')">posizione locale 1</button>
 		    <p id="geolocation2"></p>
+			<button id="ButtonGeo3" type="button" lat="" lon="" onclick="GetGeoLocation('ButtonGeo3')">posizione locale 2</button>
+		    <p id="geolocation3"></p>
+			<button id="ButtonGeo4" type="button" lat="" lon="" onclick="GetGeoLocation('ButtonGeo4')">posizione locale 3</button>
+		    <p id="geolocation4"></p>
+			<label for="Distance">Distanza massima:</label>
+			<input type="number" data-clear-btn="false" name="Distance" id="Distance" value="">
 			<button type="button" onclick="gps_distance()">Distance</button>
 			<p id="geolocationDist"></p>
 		    <p><a href="#one" data-rel="back" data-role="button" data-inline="true" data-icon="back">Indietro</a></p>	
