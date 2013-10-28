@@ -216,12 +216,35 @@ function gps_distance()
 		element.append('Difference U-L3: '+DistUL3+' km<br><br>');
 		
 		if(DistUL1<$('#Distance').val())
+		{
 			element.append('Difference U-L1 <2m: '+DistUL1+' km<br>');
+			StoreInPhone('UL1','ON');
+		}
+		else
+		{
+			StoreInPhone('UL1','OFF');
+		}
 		if(DistUL2<$('#Distance').val())
+		{
 			element.append('Difference U-L2 <2m: '+DistUL2+' km<br>');
+			StoreInPhone('UL2','ON');
+		}
+		else
+		{
+			StoreInPhone('UL2','OFF');
+		}
 		if(DistUL3<$('#Distance').val())
+		{
 			element.append('Difference U-L3 <2m: '+DistUL3+' km<br>');
-		
+			StoreInPhone('UL3','ON');
+		}
+		else
+		{
+			StoreInPhone('UL3','OFF');
+		}
+
+		StoreInPhone('dist',$('#Distance').val());
+
 		onDeviceReady();
     }
 }

@@ -15,61 +15,81 @@ if ((window.localStorage.getItem("Lat1"))&&(window.localStorage.getItem("Lon1"))
 	var markerOne = new google.maps.Marker({
 	position: latitudeAndLongitudeOne,
 	map: map,
+	optimized: false,
 	title: 'Posizione Utente'
 	});
+	
+	if(window.localStorage.getItem("dist"))
+	{
+		var searchCircle = new google.maps.Circle({
+			fillColor: '#c0e4dd',
+			strokeColor: '#f15f22',
+			fillOpacity: 0.5,
+			radius: (window.localStorage.getItem("dist")*'1000'),
+			map:map
+		});  
+		searchCircle.setCenter(latitudeAndLongitudeOne);	
+	}
 	mapBounds.extend(latitudeAndLongitudeOne);
 	DoIt++;
 }
 else
 	var latitudeAndLongitudeOne = new google.maps.LatLng('-33.890542','151.274856');
-  
-if ((window.localStorage.getItem("Lat2"))&&(window.localStorage.getItem("Lon2"))) 
-{
-	var latitudeAndLongitudeTwo = new google.maps.LatLng(window.localStorage.getItem("Lat2"),window.localStorage.getItem("Lon2"));
-	
-	var markerTwo = new google.maps.Marker({
-	position: latitudeAndLongitudeTwo,
-	map: map,
-	title: 'Posizione Locale 1'
-	});
-	mapBounds.extend(latitudeAndLongitudeTwo);
-	DoIt++;
-}
-else
-	var latitudeAndLongitudeTwo = new google.maps.LatLng('57.77828', '14.17200');
- 
- if ((window.localStorage.getItem("Lat3"))&&(window.localStorage.getItem("Lon3"))) 
-{
-	var latitudeAndLongitudeThree = new google.maps.LatLng(window.localStorage.getItem("Lat3"),window.localStorage.getItem("Lon3"));
-	
-	var markerThree = new google.maps.Marker({
-	position: latitudeAndLongitudeThree,
-	map: map,
-	title: 'Posizione Locale 2'
-	});
-	mapBounds.extend(latitudeAndLongitudeThree);
-	DoIt++;
-}
-else
-	var latitudeAndLongitudeThree = new google.maps.LatLng('80.77828', '50.17200');
- 
 
- if ((window.localStorage.getItem("Lat4"))&&(window.localStorage.getItem("Lon4"))) 
-{
-	var latitudeAndLongitudeFour = new google.maps.LatLng(window.localStorage.getItem("Lat4"),window.localStorage.getItem("Lon4"));
-	
-	var markerFour = new google.maps.Marker({
-	position: latitudeAndLongitudeFour,
-	map: map,
-	title: 'Posizione Locale 3'
-	});
-	mapBounds.extend(latitudeAndLongitudeFour);
-	DoIt++;
-	
+if (window.localStorage.getItem("UL1")=='ON')
+{	
+	if ((window.localStorage.getItem("Lat2"))&&(window.localStorage.getItem("Lon2"))) 
+	{
+		var latitudeAndLongitudeTwo = new google.maps.LatLng(window.localStorage.getItem("Lat2"),window.localStorage.getItem("Lon2"));
+		
+		var markerTwo = new google.maps.Marker({
+		position: latitudeAndLongitudeTwo,
+		map: map,
+		title: 'Posizione Locale 1'
+		});
+		mapBounds.extend(latitudeAndLongitudeTwo);
+		DoIt++;
+	}
+	else
+		var latitudeAndLongitudeTwo = new google.maps.LatLng('57.77828', '14.17200');
 }
-else
-	var latitudeAndLongitudeFour = new google.maps.LatLng('10.77828', '100.17200');
+if (window.localStorage.getItem("UL2")=='ON')
+{	
+	 if ((window.localStorage.getItem("Lat3"))&&(window.localStorage.getItem("Lon3"))) 
+	{
+		var latitudeAndLongitudeThree = new google.maps.LatLng(window.localStorage.getItem("Lat3"),window.localStorage.getItem("Lon3"));
+		
+		var markerThree = new google.maps.Marker({
+		position: latitudeAndLongitudeThree,
+		map: map,
+		title: 'Posizione Locale 2'
+		});
+		mapBounds.extend(latitudeAndLongitudeThree);
+		DoIt++;
+	}
+	else
+		var latitudeAndLongitudeThree = new google.maps.LatLng('80.77828', '50.17200');
+	 
+}
 
+if (window.localStorage.getItem("UL3")=='ON')
+{	
+	 if ((window.localStorage.getItem("Lat4"))&&(window.localStorage.getItem("Lon4"))) 
+	{
+		var latitudeAndLongitudeFour = new google.maps.LatLng(window.localStorage.getItem("Lat4"),window.localStorage.getItem("Lon4"));
+		
+		var markerFour = new google.maps.Marker({
+		position: latitudeAndLongitudeFour,
+		map: map,
+		title: 'Posizione Locale 3'
+		});
+		mapBounds.extend(latitudeAndLongitudeFour);
+		DoIt++;
+		
+	}
+	else
+		var latitudeAndLongitudeFour = new google.maps.LatLng('10.77828', '100.17200');
+}
  if(DoIt)
 	map.fitBounds(mapBounds);
  
