@@ -113,13 +113,13 @@ function SplashscreenExample() {
 /****************************************************************/
 function GetGeoLocation(button) {
 	if(button=='ButtonGeo1')
-		navigator.geolocation.getCurrentPosition(GeoOnSuccess1, GeoOnError);
+		navigator.geolocation.getCurrentPosition(GeoOnSuccess1, GeoOnError, { enableHighAccuracy: true });
 	else if(button=='ButtonGeo2')
-		navigator.geolocation.getCurrentPosition(GeoOnSuccess2, GeoOnError);
+		navigator.geolocation.getCurrentPosition(GeoOnSuccess2, GeoOnError, { enableHighAccuracy: true });
 	else if(button=='ButtonGeo3')
-		navigator.geolocation.getCurrentPosition(GeoOnSuccess3, GeoOnError);
+		navigator.geolocation.getCurrentPosition(GeoOnSuccess3, GeoOnError, { enableHighAccuracy: true });
 	else if(button=='ButtonGeo4')
-		navigator.geolocation.getCurrentPosition(GeoOnSuccess4, GeoOnError);
+		navigator.geolocation.getCurrentPosition(GeoOnSuccess4, GeoOnError, { enableHighAccuracy: true });
 }
 
 
