@@ -25,9 +25,13 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
 
         <link rel="stylesheet" type="text/css" href="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.css" />
+
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
         
-        <script type="text/javascript" src="phonegap.js"></script>
+		<script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/googlemap.js"></script>
         <script src="jquery.mobile-1.3.2/jquery-1.10.2.min.js"></script>
         <script src="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
         <title>Test Connessione</title>
@@ -43,6 +47,8 @@
 		    <h2>Test</h2>
 		
 		    <p> </p>
+			
+			
 		    <h3>Show internal pages:</h3>
 		    <p><a href="#popupGeo" data-role="button" data-rel="dialog" data-transition="pop">Esempio Geolocation</a></p>
             <p><a href="#popupAcc" data-role="button" data-rel="dialog" data-transition="pop">Esempio Accelerometro</a></p>
@@ -84,7 +90,13 @@
 			<input type="number" data-clear-btn="false" name="Distance" id="Distance" value="">
 			<button type="button" onclick="gps_distance()">Distance</button>
 			<p id="geolocationDist"></p>
+			<div id="map_canvas" style="position:relative;bottom:0;left:0;width:100%;height:300px;">
+			</div>
+			
 		    <p><a href="#one" data-rel="back" data-role="button" data-inline="true" data-icon="back">Indietro</a></p>	
+
+			
+			
 	    </div><!-- /content -->
 	
 	    <div data-role="footer">

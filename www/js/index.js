@@ -7,16 +7,23 @@ function Init() {
     document.addEventListener("offline", onOffline, false);
 
     document.addEventListener("deviceready", onDeviceReady, true);
+	onDeviceReady();
 }
+
 function InitSecondPage() {
     document.addEventListener("online", onOnline, false);
     document.addEventListener("offline", onOffline, false);
     document.addEventListener("deviceready", onDeviceReadySecondPage, true);
 
 }
-function onDeviceReady() {
-    document.addEventListener("backbutton", BackKeyDown, true);
+
+function onDeviceReady(){
+var map = new GoogleMap();
+map.initialize();
+document.addEventListener("backbutton", BackKeyDown, true);
 }
+
+
 function onDeviceReadySecondPage() {
 
     var StatoCon = document.getElementById('ConnectionStatus');
@@ -137,7 +144,9 @@ function GeoOnSuccess1(position) {
 
 	$('#ButtonGeo1').attr( 'lat', position.coords.latitude );		
 	$('#ButtonGeo1').attr( 'lon', position.coords.longitude );			
-
+	
+	StoreInPhone('Lat1',position.coords.latitude);
+	StoreInPhone('Lon1',position.coords.longitude);
 	
 }
 
@@ -150,7 +159,8 @@ function GeoOnSuccess2(position) {
 	$('#ButtonGeo2').attr( 'lat', position.coords.latitude );		
 	$('#ButtonGeo2').attr( 'lon', position.coords.longitude );			
 
-	
+	StoreInPhone('Lat2',position.coords.latitude);
+	StoreInPhone('Lon2',position.coords.longitude);
 }
 
 function GeoOnSuccess3(position) {
@@ -162,7 +172,8 @@ function GeoOnSuccess3(position) {
 	$('#ButtonGeo3').attr( 'lat', position.coords.latitude );		
 	$('#ButtonGeo3').attr( 'lon', position.coords.longitude );			
 
-	
+	StoreInPhone('Lat3',position.coords.latitude);
+	StoreInPhone('Lon3',position.coords.longitude);
 }
 
 function GeoOnSuccess4(position) {
@@ -174,7 +185,8 @@ function GeoOnSuccess4(position) {
 	$('#ButtonGeo4').attr( 'lat', position.coords.latitude );		
 	$('#ButtonGeo4').attr( 'lon', position.coords.longitude );			
 
-	
+	StoreInPhone('Lat4',position.coords.latitude);
+	StoreInPhone('Lon4',position.coords.longitude);
 }
 
 function gps_distance()
@@ -209,9 +221,9 @@ function gps_distance()
 			element.append('Difference U-L2 <2m: '+DistUL2+' km<br>');
 		if(DistUL3<$('#Distance').val())
 			element.append('Difference U-L3 <2m: '+DistUL3+' km<br>');
-
-		return d;
-	}
+		
+		onDeviceReady();
+    }
 }
 
 function GET_gps_distance(lat1,lon1,lat2,lon2)
@@ -231,6 +243,10 @@ function GET_gps_distance(lat1,lon1,lat2,lon2)
 
     return d;
 }
+/****************************************************************/
+/*                  GEOLOCATION - GMAPS                         */
+/****************************************************************/
+
 
 
 /****************************************************************/
@@ -396,6 +412,10 @@ function StoreLocally() {
 
     window.localStorage.setItem("key", document.all.TextToSave.value);
 
+}
+
+function StoreInPhone(key,value) {
+    window.localStorage.setItem(key, value);
 }
 
 /****************************************************************/
